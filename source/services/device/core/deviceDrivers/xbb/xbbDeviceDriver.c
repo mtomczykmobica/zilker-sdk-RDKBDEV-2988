@@ -823,6 +823,7 @@ static bool executeEndpointResource(ZigbeeDriverCommon *ctx,
             free(onPhaseDuration);
             free(offPhaseDuration);
             free(pauseDuration);
+            cJSON_Delete(inputObject);
         }
         else
         {

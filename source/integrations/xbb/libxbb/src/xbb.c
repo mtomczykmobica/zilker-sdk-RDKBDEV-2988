@@ -497,7 +497,7 @@ bool xbbGetConfig(XbbConfiguration *config)
         {
             DEBUG_PRINT("xbbGetConfig: Unable to retrieve DeviceTempAlarmMask\n");
         }
-
+        cJSON_Delete(json);
         return true;
     }
     else

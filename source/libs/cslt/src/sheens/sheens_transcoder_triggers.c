@@ -1126,10 +1126,14 @@ static cJSON* time_trigger_handler(const icrule_trigger_t* trigger,
                                                     node_branches);
         if (interval_javascript == NULL || endTimeJs == NULL)
         {
+            free(whenTimeJs);
             return NULL;
         }
 
         AUTO_CLEAN(free_generic__auto) char *intervalConditionJs = stringBuilder(interval_match_js, endTimeJs, interval_javascript);
+
+        free(endTimeJs);
+        free(interval_javascript);
 
         // Build the final javascript for interval rules
         js = stringBuilder(time_js, whenTimeJs, intervalConditionJs);
@@ -1139,6 +1143,8 @@ static cJSON* time_trigger_handler(const icrule_trigger_t* trigger,
         // Build the final javascript for exact time triggers
         js = stringBuilder(time_js, whenTimeJs, exact_match_js);
     }
+
+    free(whenTimeJs);
 
     if (js == NULL)
     {
@@ -1160,6 +1166,7 @@ static cJSON* time_trigger_handler(const icrule_trigger_t* trigger,
     cJSON_AddItemToObject(nodes_object,
                           uuid_str,
                           sheens_create_state_node(cJSON_CreateString(js), branch_array, false));
+    free(js);
 
     // Create schedule timer tick pattern for start.
     pattern = cJSON_CreateObject();

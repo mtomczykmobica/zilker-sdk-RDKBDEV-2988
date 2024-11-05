@@ -608,6 +608,7 @@ void* sendNotification(void* pValue)
 
             notifyPayloadString = cJSON_PrintUnformatted(notifyPayload);
             icLogInfo(LOG_TAG, "payload: %s", notifyPayloadString);
+            free(notifyPayloadString);
         }
 
         snprintf(source, sizeof(source), "mac:%s/xhfw", deviceMAC);

@@ -1217,7 +1217,6 @@ static automationMetadata *assembleAutomationMetadata(const char *disassemblyPat
                     default:
                         break;
                 }
-
                 free(metadataContents);
             }
         }

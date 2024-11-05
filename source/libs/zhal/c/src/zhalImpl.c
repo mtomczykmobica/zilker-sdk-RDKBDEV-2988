@@ -533,6 +533,7 @@ static bool xmit(WorkItem *item)
     {
         icLogError(LOG_TAG, "error sending payload length: %s", strerror(errno));
         close(sock);
+        free(payload);
         return false;
     }
 

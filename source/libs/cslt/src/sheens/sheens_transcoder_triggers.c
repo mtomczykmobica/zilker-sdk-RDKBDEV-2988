@@ -1140,7 +1140,7 @@ static cJSON* time_trigger_handler(const icrule_trigger_t* trigger,
         js = stringBuilder(time_js, whenTimeJs, exact_match_js);
     }
 
-    if (js == NULL)
+     if (js == NULL)
     {
         return NULL;
     }
